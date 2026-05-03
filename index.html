@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam & Study Dashboard</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        h1, h2 {
+            color: var(--primary-color);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .countdown-container {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        #timer {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #f1c40f;
+            margin-top: 10px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            white-space: nowrap;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        th {
+            background-color: var(--secondary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            th, td {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Study & Exam Dashboard</h1>
+            <p>16 Pomodoros per day. Focus on the process.</p>
+        </div>
+
+        <div class="countdown-container">
+            <div>Time until first exam (Emerging Trends of Computing):</div>
+            <div id="timer">Loading timer...</div>
+        </div>
+
+        <div class="card">
+            <h2>📅 Exam Timetable</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Emerging Trends of Computing</strong></td>
+                        <td>May 11th</td>
+                        <td>1:00 p.m.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Theory of Programming Languages</strong></td>
+                        <td>May 13th</td>
+                        <td>1:00 p.m.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Machine Learning</strong></td>
+                        <td>May 15th</td>
+                        <td>9:00 a.m.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Software Quality Assurance</strong></td>
+                        <td>May 19th</td>
+                        <td>1:00 p.m.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Formal Methods of Software Verification</strong></td>
+                        <td>June 4th</td>
+                        <td>1:00 p.m.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Natural Language Processing</strong></td>
+                        <td>June 12th</td>
+                        <td>9:00 a.m.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>⏱️ The Daily Pomodoro Routine</h2>
+            <p>25 minutes focus, 5 minutes rest per Pomodoro.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time Window</th>
+                        <th>Activity</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>6:00 a.m. - 7:30 a.m.</td>
+                        <td>Wake Up & Prep</td>
+                        <td>Breakfast, shower, get fully awake</td>
+                    </tr>
+                    <tr>
+                        <td>7:30 a.m. - 9:30 a.m.</td>
+                        <td><strong>Study Block 1</strong></td>
+                        <td>4 Pomodoros on Subject A</td>
+                    </tr>
+                    <tr>
+                        <td>9:30 a.m. - 11:00 a.m.</td>
+                        <td>Long Rest / Nap</td>
+                        <td>90 minutes to sleep, relax, or use phone</td>
+                    </tr>
+                    <tr>
+                        <td>11:00 a.m. - 1:00 p.m.</td>
+                        <td><strong>Study Block 2</strong></td>
+                        <td>4 Pomodoros on Subject B</td>
+                    </tr>
+                    <tr>
+                        <td>1:00 p.m. - 3:00 p.m.</td>
+                        <td>Lunch & Break</td>
+                        <td>Eat and reset focus</td>
+                    </tr>
+                    <tr>
+                        <td>3:00 p.m. - 5:00 p.m.</td>
+                        <td><strong>Study Block 3</strong></td>
+                        <td>4 Pomodoros on Subject C</td>
+                    </tr>
+                    <tr>
+                        <td>5:00 p.m. - 6:30 p.m.</td>
+                        <td>Active Break</td>
+                        <td>Wushu practice, a walk, movement</td>
+                    </tr>
+                    <tr>
+                        <td>6:30 p.m. - 8:30 p.m.</td>
+                        <td><strong>Study Block 4</strong></td>
+                        <td>4 Pomodoros on Subject D</td>
+                    </tr>
+                    <tr>
+                        <td>8:30 p.m. - 10:00 p.m.</td>
+                        <td>Wind Down</td>
+                        <td>Dinner, relax, lights out at 10:00 p.m.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>🎯 Day-by-Day Subject Focus (May 3 - May 10)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Block 1 (Morning)</th>
+                        <th>Block 2 (Midday)</th>
+                        <th>Block 3 (Afternoon)</th>
+                        <th>Block 4 (Evening)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>May 3 - May 5</strong></td>
+                        <td>Emerging Trends</td>
+                        <td>Emerging Trends</td>
+                        <td>Machine Learning</td>
+                        <td>Machine Learning</td>
+                    </tr>
+                    <tr>
+                        <td><strong>May 6 - May 8</strong></td>
+                        <td>Emerging Trends</td>
+                        <td>Machine Learning</td>
+                        <td>Theory of Prog. Lang.</td>
+                        <td>Theory of Prog. Lang.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>May 9 - May 10</strong></td>
+                        <td>Emerging Trends</td>
+                        <td>Emerging Trends</td>
+                        <td>Emerging Trends (Review)</td>
+                        <td>Machine Learning</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Set the date we're counting down to: May 11, 2026 at 1:00 PM
+        const countDownDate = new Date("May 11, 2026 13:00:00").getTime();
+
+        // Update the count down every 1 second
+        const x = setInterval(function() {
+
+            // Get today's date and time
+            const now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            const distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="timer"
+            document.getElementById("timer").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "EXAM TIME!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
