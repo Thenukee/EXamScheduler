@@ -3,292 +3,638 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam & Study Dashboard</title>
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --bg-color: #f4f7f6;
-            --card-bg: #ffffff;
-            --text-color: #333333;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .container {
-            max-width: 1000px;
-            width: 100%;
-        }
-
-        h1, h2 {
-            color: var(--primary-color);
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .countdown-container {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        #timer {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #f1c40f;
-            margin-top: 10px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            white-space: nowrap;
-        }
-
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #eeeeee;
-        }
-
-        th {
-            background-color: var(--secondary-color);
-            color: white;
-            font-weight: 600;
-        }
-
-        tr:hover {
-            background-color: #f9f9f9;
-        }
-
-        .highlight {
-            font-weight: bold;
-            color: var(--accent-color);
-        }
-
-        @media (max-width: 768px) {
-            th, td {
-                padding: 10px;
-                font-size: 0.9em;
-            }
-        }
-    </style>
+    <title>Study & Exam Dashboard</title>
+    <meta name="theme-color" content="#0f172a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-    <div class="container">
-        <div class="header">
+    <main class="container">
+        <header class="hero">
             <h1>Study & Exam Dashboard</h1>
-            <p>16 Pomodoros per day. Focus on the process.</p>
-        </div>
+            <p class="subtitle">16 Pomodoros per day. Focus on the process.</p>
+        </header>
 
-        <div class="countdown-container">
-            <div>Time until first exam (Emerging Trends of Computing):</div>
-            <div id="timer">Loading timer...</div>
-        </div>
+        <section class="countdown" aria-label="Exam countdown">
+            <div id="countdownLabel" class="countdown-label">Time until next exam:</div>
+            <div id="timer" class="countdown-timer" role="status" aria-live="polite">Loading timer...</div>
+        </section>
 
-        <div class="card">
+        <section class="card calendar-card" style="--delay: 190ms;">
+            <div class="calendar-header">
+                <div>
+                    <h2>🗓️ May 2026 Intensity Calendar</h2>
+                    <p class="calendar-subtitle">Heat map of study load. Pulsing tiles mark exam days.</p>
+                </div>
+                <div class="calendar-legend" role="list">
+                    <div class="legend-item" role="listitem">
+                        <span class="legend-swatch intensity-low"></span>
+                        Light
+                    </div>
+                    <div class="legend-item" role="listitem">
+                        <span class="legend-swatch intensity-medium"></span>
+                        Moderate
+                    </div>
+                    <div class="legend-item" role="listitem">
+                        <span class="legend-swatch intensity-high"></span>
+                        Heavy
+                    </div>
+                    <div class="legend-item" role="listitem">
+                        <span class="legend-swatch intensity-peak"></span>
+                        Exam
+                    </div>
+                </div>
+            </div>
+            <div class="calendar-grid" role="grid" aria-label="May 2026 study intensity">
+                <div class="calendar-weekday" role="columnheader">Mon</div>
+                <div class="calendar-weekday" role="columnheader">Tue</div>
+                <div class="calendar-weekday" role="columnheader">Wed</div>
+                <div class="calendar-weekday" role="columnheader">Thu</div>
+                <div class="calendar-weekday" role="columnheader">Fri</div>
+                <div class="calendar-weekday" role="columnheader">Sat</div>
+                <div class="calendar-weekday" role="columnheader">Sun</div>
+
+                <div class="calendar-cell is-empty" aria-hidden="true"></div>
+                <div class="calendar-cell is-empty" aria-hidden="true"></div>
+                <div class="calendar-cell is-empty" aria-hidden="true"></div>
+                <div class="calendar-cell is-empty" aria-hidden="true"></div>
+
+                <div class="calendar-cell intensity-low" data-date="2026-05-01" style="--i: 1;">
+                    <span class="calendar-date">1</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-05-02" style="--i: 2;">
+                    <span class="calendar-date">2</span>
+                </div>
+                <div class="calendar-cell intensity-medium" data-date="2026-05-03" style="--i: 3;">
+                    <span class="calendar-date">3</span>
+                </div>
+                <div class="calendar-cell intensity-medium" data-date="2026-05-04" style="--i: 4;">
+                    <span class="calendar-date">4</span>
+                </div>
+                <div class="calendar-cell intensity-medium" data-date="2026-05-05" style="--i: 5;">
+                    <span class="calendar-date">5</span>
+                </div>
+                <div class="calendar-cell intensity-high" data-date="2026-05-06" style="--i: 6;">
+                    <span class="calendar-date">6</span>
+                </div>
+                <div class="calendar-cell intensity-high" data-date="2026-05-07" style="--i: 7;">
+                    <span class="calendar-date">7</span>
+                </div>
+                <div class="calendar-cell intensity-high" data-date="2026-05-08" style="--i: 8;">
+                    <span class="calendar-date">8</span>
+                </div>
+                <div class="calendar-cell intensity-high" data-date="2026-05-09" style="--i: 9;">
+                    <span class="calendar-date">9</span>
+                </div>
+                <div class="calendar-cell intensity-high" data-date="2026-05-10" style="--i: 10;">
+                    <span class="calendar-date">10</span>
+                </div>
+                <div class="calendar-cell intensity-peak" data-date="2026-05-11" style="--i: 11;">
+                    <span class="calendar-date">11</span>
+                </div>
+                <div class="calendar-cell intensity-medium" data-date="2026-05-12" style="--i: 12;">
+                    <span class="calendar-date">12</span>
+                </div>
+                <div class="calendar-cell intensity-peak" data-date="2026-05-13" style="--i: 13;">
+                    <span class="calendar-date">13</span>
+                </div>
+                <div class="calendar-cell intensity-high" data-date="2026-05-14" style="--i: 14;">
+                    <span class="calendar-date">14</span>
+                </div>
+                <div class="calendar-cell intensity-peak" data-date="2026-05-15" style="--i: 15;">
+                    <span class="calendar-date">15</span>
+                </div>
+                <div class="calendar-cell intensity-high" data-date="2026-05-16" style="--i: 16;">
+                    <span class="calendar-date">16</span>
+                </div>
+                <div class="calendar-cell intensity-high" data-date="2026-05-17" style="--i: 17;">
+                    <span class="calendar-date">17</span>
+                </div>
+                <div class="calendar-cell intensity-high" data-date="2026-05-18" style="--i: 18;">
+                    <span class="calendar-date">18</span>
+                </div>
+                <div class="calendar-cell intensity-peak" data-date="2026-05-19" style="--i: 19;">
+                    <span class="calendar-date">19</span>
+                </div>
+                <div class="calendar-cell intensity-high" data-date="2026-05-20" style="--i: 20;">
+                    <span class="calendar-date">20</span>
+                </div>
+                <div class="calendar-cell intensity-high" data-date="2026-05-21" style="--i: 21;">
+                    <span class="calendar-date">21</span>
+                </div>
+                <div class="calendar-cell intensity-high" data-date="2026-05-22" style="--i: 22;">
+                    <span class="calendar-date">22</span>
+                </div>
+                <div class="calendar-cell intensity-medium" data-date="2026-05-23" style="--i: 23;">
+                    <span class="calendar-date">23</span>
+                </div>
+                <div class="calendar-cell intensity-medium" data-date="2026-05-24" style="--i: 24;">
+                    <span class="calendar-date">24</span>
+                </div>
+                <div class="calendar-cell intensity-peak" data-date="2026-05-25" style="--i: 25;">
+                    <span class="calendar-date">25</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-05-26" style="--i: 26;">
+                    <span class="calendar-date">26</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-05-27" style="--i: 27;">
+                    <span class="calendar-date">27</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-05-28" style="--i: 28;">
+                    <span class="calendar-date">28</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-05-29" style="--i: 29;">
+                    <span class="calendar-date">29</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-05-30" style="--i: 30;">
+                    <span class="calendar-date">30</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-05-31" style="--i: 31;">
+                    <span class="calendar-date">31</span>
+                </div>
+            </div>
+            <div class="intensity-strip-wrap">
+                <div class="strip-header">
+                    <h3>Next 14 days</h3>
+                    <p>Auto-updates from today with exam highlights.</p>
+                </div>
+                <div id="intensityStrip" class="intensity-strip" role="list" aria-label="Next 14 days intensity"></div>
+            </div>
+        </section>
+
+        <section class="card calendar-card calendar-mini" style="--delay: 210ms;">
+            <div class="calendar-header">
+                <div>
+                    <h2>🗓️ June 2026 Mini-Calendar</h2>
+                    <p class="calendar-subtitle">Light prep with sharp spikes on exam days.</p>
+                </div>
+            </div>
+            <div class="calendar-grid calendar-mini-grid" role="grid" aria-label="June 2026 study intensity">
+                <div class="calendar-weekday" role="columnheader">Mon</div>
+                <div class="calendar-weekday" role="columnheader">Tue</div>
+                <div class="calendar-weekday" role="columnheader">Wed</div>
+                <div class="calendar-weekday" role="columnheader">Thu</div>
+                <div class="calendar-weekday" role="columnheader">Fri</div>
+                <div class="calendar-weekday" role="columnheader">Sat</div>
+                <div class="calendar-weekday" role="columnheader">Sun</div>
+
+                <div class="calendar-cell intensity-high" data-date="2026-06-01" style="--i: 1;">
+                    <span class="calendar-date">1</span>
+                </div>
+                <div class="calendar-cell intensity-high" data-date="2026-06-02" style="--i: 2;">
+                    <span class="calendar-date">2</span>
+                </div>
+                <div class="calendar-cell intensity-high" data-date="2026-06-03" style="--i: 3;">
+                    <span class="calendar-date">3</span>
+                </div>
+                <div class="calendar-cell intensity-peak" data-date="2026-06-04" style="--i: 4;">
+                    <span class="calendar-date">4</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-05" style="--i: 5;">
+                    <span class="calendar-date">5</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-06" style="--i: 6;">
+                    <span class="calendar-date">6</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-07" style="--i: 7;">
+                    <span class="calendar-date">7</span>
+                </div>
+                <div class="calendar-cell intensity-medium" data-date="2026-06-08" style="--i: 8;">
+                    <span class="calendar-date">8</span>
+                </div>
+                <div class="calendar-cell intensity-medium" data-date="2026-06-09" style="--i: 9;">
+                    <span class="calendar-date">9</span>
+                </div>
+                <div class="calendar-cell intensity-medium" data-date="2026-06-10" style="--i: 10;">
+                    <span class="calendar-date">10</span>
+                </div>
+                <div class="calendar-cell intensity-high" data-date="2026-06-11" style="--i: 11;">
+                    <span class="calendar-date">11</span>
+                </div>
+                <div class="calendar-cell intensity-peak" data-date="2026-06-12" style="--i: 12;">
+                    <span class="calendar-date">12</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-13" style="--i: 13;">
+                    <span class="calendar-date">13</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-14" style="--i: 14;">
+                    <span class="calendar-date">14</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-15" style="--i: 15;">
+                    <span class="calendar-date">15</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-16" style="--i: 16;">
+                    <span class="calendar-date">16</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-17" style="--i: 17;">
+                    <span class="calendar-date">17</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-18" style="--i: 18;">
+                    <span class="calendar-date">18</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-19" style="--i: 19;">
+                    <span class="calendar-date">19</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-20" style="--i: 20;">
+                    <span class="calendar-date">20</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-21" style="--i: 21;">
+                    <span class="calendar-date">21</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-22" style="--i: 22;">
+                    <span class="calendar-date">22</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-23" style="--i: 23;">
+                    <span class="calendar-date">23</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-24" style="--i: 24;">
+                    <span class="calendar-date">24</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-25" style="--i: 25;">
+                    <span class="calendar-date">25</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-26" style="--i: 26;">
+                    <span class="calendar-date">26</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-27" style="--i: 27;">
+                    <span class="calendar-date">27</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-28" style="--i: 28;">
+                    <span class="calendar-date">28</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-29" style="--i: 29;">
+                    <span class="calendar-date">29</span>
+                </div>
+                <div class="calendar-cell intensity-low" data-date="2026-06-30" style="--i: 30;">
+                    <span class="calendar-date">30</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="card" style="--delay: 160ms;">
             <h2>📅 Exam Timetable</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Subject</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Emerging Trends of Computing</strong></td>
-                        <td>May 11th</td>
-                        <td>1:00 p.m.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Theory of Programming Languages</strong></td>
-                        <td>May 13th</td>
-                        <td>1:00 p.m.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Machine Learning</strong></td>
-                        <td>May 15th</td>
-                        <td>9:00 a.m.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Software Quality Assurance</strong></td>
-                        <td>May 19th</td>
-                        <td>1:00 p.m.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Formal Methods of Software Verification</strong></td>
-                        <td>June 4th</td>
-                        <td>1:00 p.m.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Natural Language Processing</strong></td>
-                        <td>June 12th</td>
-                        <td>9:00 a.m.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <div class="table-wrap">
+                <table>
+                    <caption class="sr-only">Exam timetable</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Emerging Trends of Computing</strong></td>
+                            <td>May 11th</td>
+                            <td>1:00 p.m.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Theory of Programming Languages</strong></td>
+                            <td>May 13th</td>
+                            <td>1:00 p.m.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Machine Learning</strong></td>
+                            <td>May 15th</td>
+                            <td>9:00 a.m.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Software Quality Assurance</strong></td>
+                            <td>May 19th</td>
+                            <td>1:00 p.m.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Advance OS Module</strong></td>
+                            <td>May 25th</td>
+                            <td>1:00 p.m</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Formal Methods of Software Verification</strong></td>
+                            <td>June 4th</td>
+                            <td>1:00 p.m.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Natural Language Processing</strong></td>
+                            <td>June 12th</td>
+                            <td>9:00 a.m.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-        <div class="card">
+        <section class="card" style="--delay: 220ms;">
             <h2>⏱️ The Daily Pomodoro Routine</h2>
             <p>25 minutes focus, 5 minutes rest per Pomodoro.</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Time Window</th>
-                        <th>Activity</th>
-                        <th>Details</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>6:00 a.m. - 7:30 a.m.</td>
-                        <td>Wake Up & Prep</td>
-                        <td>Breakfast, shower, get fully awake</td>
-                    </tr>
-                    <tr>
-                        <td>7:30 a.m. - 9:30 a.m.</td>
-                        <td><strong>Study Block 1</strong></td>
-                        <td>4 Pomodoros on Subject A</td>
-                    </tr>
-                    <tr>
-                        <td>9:30 a.m. - 11:00 a.m.</td>
-                        <td>Long Rest / Nap</td>
-                        <td>90 minutes to sleep, relax, or use phone</td>
-                    </tr>
-                    <tr>
-                        <td>11:00 a.m. - 1:00 p.m.</td>
-                        <td><strong>Study Block 2</strong></td>
-                        <td>4 Pomodoros on Subject B</td>
-                    </tr>
-                    <tr>
-                        <td>1:00 p.m. - 3:00 p.m.</td>
-                        <td>Lunch & Break</td>
-                        <td>Eat and reset focus</td>
-                    </tr>
-                    <tr>
-                        <td>3:00 p.m. - 5:00 p.m.</td>
-                        <td><strong>Study Block 3</strong></td>
-                        <td>4 Pomodoros on Subject C</td>
-                    </tr>
-                    <tr>
-                        <td>5:00 p.m. - 6:30 p.m.</td>
-                        <td>Active Break</td>
-                        <td>Wushu practice, a walk, movement</td>
-                    </tr>
-                    <tr>
-                        <td>6:30 p.m. - 8:30 p.m.</td>
-                        <td><strong>Study Block 4</strong></td>
-                        <td>4 Pomodoros on Subject D</td>
-                    </tr>
-                    <tr>
-                        <td>8:30 p.m. - 10:00 p.m.</td>
-                        <td>Wind Down</td>
-                        <td>Dinner, relax, lights out at 10:00 p.m.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <div class="table-wrap">
+                <table>
+                    <caption class="sr-only">Daily pomodoro routine</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Time Window</th>
+                            <th scope="col">Activity</th>
+                            <th scope="col">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>6:00 a.m. - 7:30 a.m.</td>
+                            <td>Wake Up & Prep</td>
+                            <td>Breakfast, shower, get fully awake</td>
+                        </tr>
+                        <tr>
+                            <td>7:30 a.m. - 9:30 a.m.</td>
+                            <td><strong>Study Block 1</strong></td>
+                            <td>4 Pomodoros on Subject A</td>
+                        </tr>
+                        <tr>
+                            <td>9:30 a.m. - 11:00 a.m.</td>
+                            <td>Long Rest / Nap</td>
+                            <td>90 minutes to sleep, relax, or use phone</td>
+                        </tr>
+                        <tr>
+                            <td>11:00 a.m. - 1:00 p.m.</td>
+                            <td><strong>Study Block 2</strong></td>
+                            <td>4 Pomodoros on Subject B</td>
+                        </tr>
+                        <tr>
+                            <td>1:00 p.m. - 3:00 p.m.</td>
+                            <td>Lunch & Break</td>
+                            <td>Eat and reset focus</td>
+                        </tr>
+                        <tr>
+                            <td>3:00 p.m. - 5:00 p.m.</td>
+                            <td><strong>Study Block 3</strong></td>
+                            <td>4 Pomodoros on Subject C</td>
+                        </tr>
+                        <tr>
+                            <td>5:00 p.m. - 6:30 p.m.</td>
+                            <td>Active Break</td>
+                            <td>Wushu practice, a walk, movement</td>
+                        </tr>
+                        <tr>
+                            <td>6:30 p.m. - 8:30 p.m.</td>
+                            <td><strong>Study Block 4</strong></td>
+                            <td>4 Pomodoros on Subject D</td>
+                        </tr>
+                        <tr>
+                            <td>8:30 p.m. - 10:00 p.m.</td>
+                            <td>Wind Down</td>
+                            <td>Dinner, relax, lights out at 10:00 p.m.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-        <div class="card">
-            <h2>🎯 Day-by-Day Subject Focus (May 3 - May 10)</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Block 1 (Morning)</th>
-                        <th>Block 2 (Midday)</th>
-                        <th>Block 3 (Afternoon)</th>
-                        <th>Block 4 (Evening)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>May 3 - May 5</strong></td>
-                        <td>Emerging Trends</td>
-                        <td>Emerging Trends</td>
-                        <td>Machine Learning</td>
-                        <td>Machine Learning</td>
-                    </tr>
-                    <tr>
-                        <td><strong>May 6 - May 8</strong></td>
-                        <td>Emerging Trends</td>
-                        <td>Machine Learning</td>
-                        <td>Theory of Prog. Lang.</td>
-                        <td>Theory of Prog. Lang.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>May 9 - May 10</strong></td>
-                        <td>Emerging Trends</td>
-                        <td>Emerging Trends</td>
-                        <td>Emerging Trends (Review)</td>
-                        <td>Machine Learning</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+        <section class="card" style="--delay: 280ms;">
+            <h2>🎯 Day-by-Day Subject Focus (May 3 - May 24)</h2>
+            <div class="table-wrap">
+                <table>
+                    <caption class="sr-only">Day-by-day subject focus</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Block 1 (Morning)</th>
+                            <th scope="col">Block 2 (Midday)</th>
+                            <th scope="col">Block 3 (Afternoon)</th>
+                            <th scope="col">Block 4 (Evening)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>May 3 - May 5</strong></td>
+                            <td>Emerging Trends</td>
+                            <td>Emerging Trends</td>
+                            <td>Machine Learning</td>
+                            <td>Machine Learning</td>
+                        </tr>
+                        <tr>
+                            <td><strong>May 6 - May 8</strong></td>
+                            <td>Emerging Trends</td>
+                            <td>Machine Learning</td>
+                            <td>Theory of Prog. Lang.</td>
+                            <td>Theory of Prog. Lang.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>May 9 - May 10</strong></td>
+                            <td>Emerging Trends</td>
+                            <td>Emerging Trends</td>
+                            <td>Emerging Trends (Review)</td>
+                            <td>Machine Learning</td>
+                        </tr>
+                        <tr>
+                            <td><strong>May 11 - May 12</strong></td>
+                            <td>Theory of Prog. Lang.</td>
+                            <td>Theory of Prog. Lang. (Review)</td>
+                            <td>Machine Learning</td>
+                            <td>Machine Learning</td>
+                        </tr>
+                        <tr>
+                            <td><strong>May 13 - May 15</strong></td>
+                            <td>Machine Learning (Review)</td>
+                            <td>Machine Learning (Past Papers)</td>
+                            <td>Software Quality Assurance</td>
+                            <td>Software Quality Assurance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>May 16 - May 18</strong></td>
+                            <td>Software Quality Assurance (Review)</td>
+                            <td>Software Quality Assurance (Mocks)</td>
+                            <td>Advance OS Module</td>
+                            <td>Advance OS Module</td>
+                        </tr>
+                        <tr>
+                            <td><strong>May 20 - May 24</strong></td>
+                            <td>Advance OS Module</td>
+                            <td>Advance OS Module</td>
+                            <td>Advance OS Module (Labs)</td>
+                            <td>Advance OS Module (Review)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
 
     <script>
-        // Set the date we're counting down to: May 11, 2026 at 1:00 PM
-        const countDownDate = new Date("May 11, 2026 13:00:00").getTime();
+        const countdownLabel = document.getElementById("countdownLabel");
+        const timerEl = document.getElementById("timer");
 
-        // Update the count down every 1 second
-        const x = setInterval(function() {
+        const formatDateKey = (date) => {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, "0");
+            const day = String(date.getDate()).padStart(2, "0");
+            return `${year}-${month}-${day}`;
+        };
 
-            // Get today's date and time
-            const now = new Date().getTime();
+        const formatExamWhen = (date) => {
+            const dateText = date.toLocaleDateString(undefined, {
+                month: "short",
+                day: "numeric"
+            });
+            const timeText = date.toLocaleTimeString(undefined, {
+                hour: "numeric",
+                minute: "2-digit"
+            });
+            return `${dateText} - ${timeText}`;
+        };
 
-            // Find the distance between now and the count down date
-            const distance = countDownDate - now;
+        const examSchedule = [
+            { date: "2026-05-11", time: "13:00", label: "Emerging Trends of Computing" },
+            { date: "2026-05-13", time: "13:00", label: "Theory of Programming Languages" },
+            { date: "2026-05-15", time: "09:00", label: "Machine Learning" },
+            { date: "2026-05-19", time: "13:00", label: "Software Quality Assurance" },
+            { date: "2026-05-25", time: "13:00", label: "Advance OS Module" },
+            { date: "2026-06-04", time: "13:00", label: "Formal Methods of Software Verification" },
+            { date: "2026-06-12", time: "09:00", label: "Natural Language Processing" }
+        ];
 
-            // Time calculations for days, hours, minutes and seconds
+        const examScheduleWithDates = examSchedule
+            .map((exam) => ({
+                ...exam,
+                dateTime: new Date(`${exam.date}T${exam.time}:00`)
+            }))
+            .sort((a, b) => a.dateTime - b.dateTime);
+
+        const examMap = new Map(examSchedule.map((exam) => [exam.date, exam.label]));
+
+        const intensityClasses = [
+            "intensity-low",
+            "intensity-medium",
+            "intensity-high",
+            "intensity-peak"
+        ];
+
+        const calendarCells = document.querySelectorAll(".calendar-cell[data-date]");
+        const calendarMap = new Map();
+        const intensityByDate = new Map();
+
+        calendarCells.forEach((cell) => {
+            const dateKey = cell.dataset.date;
+            if (!dateKey) {
+                return;
+            }
+
+            calendarMap.set(dateKey, cell);
+            const intensityClass = intensityClasses.find((cls) => cell.classList.contains(cls));
+            if (intensityClass) {
+                intensityByDate.set(dateKey, intensityClass.replace("intensity-", ""));
+            }
+        });
+
+        const setIntensity = (cell, level) => {
+            intensityClasses.forEach((cls) => cell.classList.remove(cls));
+            cell.classList.add(`intensity-${level}`);
+        };
+
+        const ensureTag = (cell, text) => {
+            let tag = cell.querySelector(".calendar-tag");
+            if (!tag) {
+                tag = document.createElement("span");
+                tag.className = "calendar-tag";
+                cell.appendChild(tag);
+            }
+            tag.textContent = text;
+        };
+
+        examSchedule.forEach((exam) => {
+            const cell = calendarMap.get(exam.date);
+            if (!cell) {
+                return;
+            }
+
+            setIntensity(cell, "peak");
+            cell.classList.add("is-exam");
+            cell.dataset.exam = exam.label;
+            cell.title = `Exam: ${exam.label}`;
+            ensureTag(cell, "Exam");
+            intensityByDate.set(exam.date, "peak");
+        });
+
+        const todayKey = formatDateKey(new Date());
+        const todayCell = calendarMap.get(todayKey);
+        if (todayCell) {
+            todayCell.classList.add("is-today");
+            if (!todayCell.classList.contains("is-exam")) {
+                ensureTag(todayCell, "Today");
+            }
+        }
+
+        const updateCountdown = () => {
+            const now = new Date();
+            const nextExam = examScheduleWithDates.find((exam) => exam.dateTime >= now);
+
+            if (!nextExam) {
+                if (countdownLabel) {
+                    countdownLabel.textContent = "All exams completed.";
+                }
+                if (timerEl) {
+                    timerEl.textContent = "You're done!";
+                }
+                return;
+            }
+
+            const distance = nextExam.dateTime.getTime() - now.getTime();
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Display the result in the element with id="timer"
-            document.getElementById("timer").innerHTML = days + "d " + hours + "h "
-            + minutes + "m " + seconds + "s ";
-
-            // If the count down is finished, write some text
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("timer").innerHTML = "EXAM TIME!";
+            if (countdownLabel) {
+                countdownLabel.textContent = `Time until next exam (${nextExam.label} - ${formatExamWhen(nextExam.dateTime)}):`;
             }
-        }, 1000);
+            if (timerEl) {
+                timerEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+        };
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        const strip = document.getElementById("intensityStrip");
+        if (strip) {
+            const weekdayLabels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+            const startDate = new Date();
+
+            for (let i = 0; i < 14; i += 1) {
+                const current = new Date(startDate);
+                current.setDate(startDate.getDate() + i);
+                const dateKey = formatDateKey(current);
+                const intensity = intensityByDate.get(dateKey) || (examMap.has(dateKey) ? "peak" : "low");
+
+                const item = document.createElement("div");
+                item.className = `strip-day intensity-${intensity}`;
+                item.style.setProperty("--i", i + 1);
+                item.setAttribute("role", "listitem");
+                item.dataset.date = dateKey;
+
+                if (examMap.has(dateKey)) {
+                    item.classList.add("is-exam");
+                    item.title = `Exam: ${examMap.get(dateKey)}`;
+                }
+
+                if (dateKey === todayKey) {
+                    item.classList.add("is-today");
+                    item.title = item.title ? `${item.title} (Today)` : "Today";
+                }
+
+                const dow = document.createElement("span");
+                dow.className = "strip-dow";
+                dow.textContent = weekdayLabels[current.getDay()];
+
+                const dateLabel = document.createElement("span");
+                dateLabel.className = "strip-date";
+                dateLabel.textContent = current.getDate();
+
+                item.append(dow, dateLabel);
+                strip.appendChild(item);
+            }
+        }
     </script>
 </body>
 </html>
